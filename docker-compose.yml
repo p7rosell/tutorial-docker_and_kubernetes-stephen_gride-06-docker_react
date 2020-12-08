@@ -1,0 +1,20 @@
+# Video: 77 & 78 & 83 (tests)
+version: '3'
+services:
+  web:
+    build:
+      context: .                # Especificamos donde se encuentra el proyecto
+      dockerfile: Dockerfile.dev # Especificamos el Dockerfile dentro del "context"
+    ports:
+      - "3000:3000"
+    volumes:                    # Especificamos los volumenes
+      - /app/node_modules       # Especificamos el volumen que no queremos que se actualize
+      - /root/docker-projects/docker-tutorial/06/frontend:/app
+  tests: # Video 83
+    build:
+      context: .
+      dockerfile: Dockerfile.dev
+    volumes:                    # Especificamos los volumenes
+      - /app/node_modules       # Especificamos el volumen que no queremos que se actualize
+      - /root/docker-projects/docker-tutorial/06/frontend:/app
+    command: ["npm", "run", "test"] # Anulamos los comandos del docker file y lo subtituimos por este
