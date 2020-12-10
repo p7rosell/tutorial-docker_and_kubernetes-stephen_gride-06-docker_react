@@ -1,5 +1,4 @@
 # Configuramos Travis (Video 95)
-sudo: required # Le decimos que "sudo" (Usuario root) es requereido
 services:       # Le decimos los servicios que necesitamos
   - docker
 
