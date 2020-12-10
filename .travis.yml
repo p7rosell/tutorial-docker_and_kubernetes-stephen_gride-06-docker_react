@@ -1,0 +1,13 @@
+# Configuramos Travis (Video 95)
+sudo: require # Le decimos que "sudo" (Usuario root) es requereido
+servics:      # Le decimos los servicios que necesitamos
+  - docker
+
+before_install: # Le decimos todas las acciones antes de intalaciones (Test...)
+  # Hacemos un build del contenedor de docker de desarrollo.
+  # La imagen solo se usuara en este contexto, para travis
+  - docker build -t prosell/06-docker-react -f Dockerfile.dev .
+
+script:
+  # Añadimos el "-- --coverage" para que termine el test y no se quede esperando ⭐⭐
+  - docker run -e CI=true prosell/06-docker-react npm run test -- --coverage
