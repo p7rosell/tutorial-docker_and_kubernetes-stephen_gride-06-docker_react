@@ -1,6 +1,6 @@
 # Configuramos Travis (Video 95)
-sudo: require # Le decimos que "sudo" (Usuario root) es requereido
-servics:      # Le decimos los servicios que necesitamos
+sudo: required # Le decimos que "sudo" (Usuario root) es requereido
+services:       # Le decimos los servicios que necesitamos
   - docker
 
 before_install: # Le decimos todas las acciones antes de intalaciones (Test...)
