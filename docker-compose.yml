@@ -15,6 +15,10 @@ services:
       context: .
       dockerfile: Dockerfile.dev
     volumes:                    # Especificamos los volumenes
+      # En este caso, creamos un volumen de toda la carpeta frontend, o sea guardamos todo el contenido
+      #    frontend en nuestro directorio actual.
+      #    Pero no queremos que se guarde fuera de Dockerla carpeta "node_modules" ⭐⭐,
+      #        asi que añadimos como volumen la carpeta sin asignarlo a ningun sitio
       - /app/node_modules       # Especificamos el volumen que no queremos que se actualize
-      - /root/docker-projects/docker-tutorial/06/frontend:/app
+      - ./:/app
     command: ["npm", "run", "test"] # Anulamos los comandos del docker file y lo subtituimos por este
