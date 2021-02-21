@@ -10,3 +10,22 @@ before_install: # Le decimos todas las acciones antes de intalaciones (Test...)
 script:
   # Añadimos el "-- --coverage" para que termine el test y no se quede esperando ⭐⭐
   - docker run -e CI=true prosell/06-docker-react npm run test -- --coverage
+
+deploy: # Añadimos la configuración de deployment para AWS ⭐ (V 103)
+  provider: elasticbeanstalk # La propiedad elasticbeanstalk ya viene preconfigurada en Travis-ci
+  region: "eu-central-1" # Añadimo la region que se encuentran los servidores de AWS
+  # Añadimos el nombre de la aplicación ⭐ ES EL MISMO QUE SE HA AÑADIDO EN AWS ⭐
+  app: "tutorial_docker_and_kubernetes_06-production-grade"
+  # Añadimos el enviroment (Entonos) de nuestra configuración de AWS (elasticbeanstalk -> Aplicaciones)
+  env: "Tutorialdockerandkubernetes06product-env"
+  # Añadimos el nombre de S3 (Almacenamiento de AWS)
+  bucket_name: "elasticbeanstalk-eu-central-1-511748158329"
+  # Especificamos la ruta dentro de S3 donde estará nuestra app (E n este caso el nombre de la aplicación)
+  bucket_path: "tutorial_docker_and_kubernetes_06-production-grade"
+  # Cada vez que implementamos un cambio en la rama Master, ara una subida a produccion
+  on:
+    branch: master
+  # Añadimos los accesos del usuario creado en AWS (V 106). Añadimo el valor de la variable de entorno que
+  #    que hemos añadido en el Travis-CI
+  access_key_id: $AWS_ACCESS_KEY
+  secret_access_key: $AWS_SECRET_KEY
