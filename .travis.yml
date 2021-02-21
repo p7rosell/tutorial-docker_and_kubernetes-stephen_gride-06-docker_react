@@ -27,5 +27,5 @@ deploy: # Añadimos la configuración de deployment para AWS ⭐ (V 103)
     branch: master
   # Añadimos los accesos del usuario creado en AWS (V 106). Añadimo el valor de la variable de entorno que
   #    que hemos añadido en el Travis-CI
-  access_key_id: $AWS_ACCESS_KEY
-  secret_access_key: $AWS_SECRET_KEY
+  access_key_id: "$AWS_ACCESS_KEY"
+  secret_access_key: "$AWS_SECRET_KEY"
